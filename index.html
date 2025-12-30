@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --accent-soft: #ff6b6b;
+            --text: #2d3436;
+            --text-light: #636e72;
+            --bg: #fafafa;
+            --card-bg: #ffffff;
+            --border: #e8e8e8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--primary);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-family: 'Crimson Pro', serif;
+            color: white;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.3rem;
+        }
+
+        .logo p {
+            font-size: 0.9rem;
+            font-weight: 400;
+            opacity: 0.9;
+            font-family: 'Work Sans', sans-serif;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            border: none;
+            cursor: pointer;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .tab:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .tab.active {
+            color: white;
+            background: var(--accent);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section {
+            padding: 4rem 0;
+            min-height: 60vh;
+        }
+
+        .section-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-color: var(--accent);
+        }
+
+        .card-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Resume Section */
+        .resume-section {
+            margin-bottom: 3rem;
+        }
+
+        .resume-section h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .resume-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .resume-item h4 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .resume-meta {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Research Publications */
+        .publication {
+            background: var(--card-bg);
+            padding: 1.8rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .publication:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .publication-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .publication-authors {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .publication-venue {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+
+        /* GitHub Repos */
+        .repo {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .repo:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .repo-name {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .repo-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .repo-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .repo-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Links */
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-soft);
+        }
+
+        /* Contact Section */
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-tabs {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Nikolai (Cole) Morokhovich</h1>
+                    <p>Data Scientist | Quantitative Ecologist | ML Engineer</p>
+                </div>
+                <nav class="nav-tabs">
+                    <button class="tab active" onclick="showTab('about')">About</button>
+                    <button class="tab" onclick="showTab('research')">Research</button>
+                    <button class="tab" onclick="showTab('experience')">Experience</button>
+                    <button class="tab" onclick="showTab('projects')">Projects</button>
+                    <button class="tab" onclick="showTab('resume')">Resume</button>
+                    <button class="tab" onclick="showTab('fun')">Fun</button>
+                    <button class="tab" onclick="showTab('contact')">Contact</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- About Tab -->
+        <div id="about" class="tab-content active">
+            <section class="content-section">
+                <h2 class="section-title">About Me</h2>
+                
+                <!-- Photo Section -->
+                <div class="card" style="text-align: center; margin-bottom: 2rem;">
+                    <div style="width: 200px; height: 200px; margin: 0 auto 1.5rem; border-radius: 50%; overflow: hidden; border: 4px solid var(--accent);">
+                        <img src="profile_pic.jpg" alt="Cole Morokhovich" style="width: 100%; height: 100%; object-fit: cover; background: var(--border);">
+                    </div>
+                    <h3 style="font-family: 'Crimson Pro', serif; font-size: 1.5rem; margin-bottom: 0.5rem;">Nikolai (Cole) Morokhovich</h3>
+                    <p style="color: var(--accent); font-weight: 500;">Seattle, WA</p>
+                </div>
+
+                <div class="card">
+                    <p style="font-size: 1.1rem; line-height: 1.8;">
+                        I'm a data scientist with experience building Machine Learning and AI pipelines for high-dimensional data, 
+                        developing statistical models for constrained systems, and processing big scientific datasets for signal extraction. 
+                        Currently, I'm a Graduate Research Assistant at the University of Washington's Punt Lab, where I focus on fisheries 
+                        risk assessment and spatiotemporal modeling.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                        My work spans from coding ETL pipelines and building machine learning models to explaining results to executives 
+                        and partnering with scientists who don't write code. I'm skilled in Python, R, SQL, and ML fundamentals, with 
+                        experience in automated workflows for scientific applications including raw sensor data processing, feature extraction, 
+                        and anomaly detection.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                        I graduated Magna Cum Laude from Princeton University with a BA in Ecology and Evolutionary Biology, where I was 
+                        also a member of the Varsity Men's Soccer Team and received Academic All-Ivy honors.
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Research Tab -->
+        <div id="research" class="tab-content">
+            <section class="content-section">
+                <h2 class="section-title">Research</h2>
+                
+                <div class="resume-section">
+                    <h3>Research Interests</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 2rem; color: var(--text-light);">
+                        My research focuses on quantifying uncertainty in dynamic environmental systems, particularly in marine and coastal ecosystems. 
+                        I specialize in statistical forecasting, spatiotemporal modeling, and risk assessment for fisheries management. My work combines 
+                        machine learning, Bayesian statistics, and time series analysis to develop predictive models that inform policy and management decisions.
+                    </p>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Current Research</h3>
+                    
+                    <div class="publication">
+                        <div class="publication-title">Fisheries Risk Assessment for Insurance Products</div>
+                        <div class="publication-authors">Punt Lab, University of Washington | 2023-Present</div>
+                        <div class="publication-venue">In collaboration with NOAA, NMFS, and Tribal partners</div>
+                        <div class="publication-description">
+                            Developing probabilistic loss models (PML) and Loss Exceedance Curves for catastrophic marine heatwave scenarios. 
+                            Built ETL pipelines processing 1B+ NOAA records with automated anomaly detection, compiled comprehensive fisheries 
+                            disaster datasets, and ran 10K+ Monte Carlo simulations to inform insurance product discussions with congressional committees. 
+                            Presented findings at Ocean Modeling Forum workshop in Tasmania.
+                            <br><br>
+                            <a href="https://fishery-risk-platform-draft.streamlit.app/" target="_blank" style="color: var(--accent); font-weight: 600;">🔗 View Risk Assessment Platform</a>
+                        </div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="publication-title">Spatiotemporal Forecasting Models for Marine Ecosystems</div>
+                        <div class="publication-authors">Master's Thesis Research | 2023-Present</div>
+                        <div class="publication-venue">University of Washington</div>
+                        <div class="publication-description">
+                            Developed and compared three spatiotemporal forecasting approaches (EOF-SVD decomposition, Bayesian GLLVM-SPDE, 
+                            and spectral clustering), achieving 15% improvement in prediction accuracy. Implemented custom Bayesian C++/TMB 
+                            likelihood functions for zero-inflated data with spatial correlation across 12K+ observations and 349 locations. 
+                            Applied statistical decomposition methods to separate signals from noise in complex environmental datasets.
+                        </div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="publication-title">Lake Erie Environmental Dashboard</div>
+                        <div class="publication-authors">Collaboration with Regional Science Consortium | 2024</div>
+                        <div class="publication-venue">University of Washington</div>
+                        <div class="publication-description">
+                            Built end-to-end ML pipeline for environmental sensor data processing and visualization. Created data validation 
+                            system with automated QC checks, outlier detection, and missing data monitoring across 16 devices. Combined data 
+                            from 3 databases with inconsistent schemas, standardizing 20+ parameters. Deployed interactive Streamlit dashboard 
+                            enabling non-technical stakeholders to explore environmental data with time series visualization and anomaly detection. 
+                            <a href="https://lkerie.streamlit.app/" target="_blank" style="color: var(--accent);">View Dashboard</a> | 
+                            <a href="https://github.com/Bware583/LakeErie" target="_blank" style="color: var(--accent);">GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="publication">
+                        <div class="publication-title">High-Dimensional Environmental Data Clustering</div>
+                        <div class="publication-authors">Graduate Course Project | 2024</div>
+                        <div class="publication-venue">University of Washington</div>
+                        <div class="publication-description">
+                            Built ML pipeline for clustering and dimensionality reduction on high-dimensional environmental sensor data. 
+                            Implemented DPGMM and HDBSCAN for pattern detection on 10K samples × 600 features. Engineered dimensionality 
+                            reduction pipeline using PCA and UMAP, achieving 99% data reduction while preserving pattern structure for 
+                            classification. Built parallelized processing framework distributing computational load across CPU cores, 
+                            reducing processing time 60%.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Thesis</h3>
+                    <div class="card">
+                        <p style="font-size: 1.05rem; line-height: 1.7;">
+                            <strong>Quantifying Uncertainty in Dynamic Systems: Statistical Approaches for Forecasting and Fisheries Risk Assessment</strong><br>
+                            <em>Expected completion: 2025</em><br><br>
+                            Developing novel statistical methodologies for forecasting and risk assessment in marine ecosystems, with applications 
+                            to fisheries management and climate change adaptation. Combines Bayesian hierarchical models, spatiotemporal statistics, 
+                            and Monte Carlo simulation to quantify uncertainty in complex ecological systems.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Experience Tab -->
+        <div id="experience" class="tab-content">
+            <section class="content-section">
+                <h2 class="section-title">Work Experience</h2>
+                
+                <div class="resume-item">
+                    <h4>Graduate Research Assistant</h4>
+                    <div class="resume-meta">Punt Lab, University of Washington | 2023 - Present</div>
+                    <p class="card-description">
+                        <strong>Fisheries Risk Assessment:</strong><br>
+                        • Built ETL pipeline processing 1B+ NOAA records with automated anomaly detection flagging marine heatwave patterns<br>
+                        • Developed Probable Maximum Loss (PML) and Loss Exceedance Curves for catastrophic marine heatwave scenarios using Monte Carlo simulation<br>
+                        • Compiled fisheries disaster dataset linking catch records, temperature data, and economic impacts from NOAA, NMFS, and Tribal sources<br>
+                        • Ran Monte Carlo simulations generating 10K+ scenarios informing insurance product discussions with congressional committees<br>
+                        • Documented data gathering, modeling, and visualization methodology for reproducibility and validation<br>
+                        • Presented findings at Ocean Modeling Forum workshop in Tasmania to researchers, industry partners, and stakeholders<br>
+                        • <a href="https://fishery-risk-platform-draft.streamlit.app/" target="_blank" style="color: var(--accent); font-weight: 600;">View Risk Assessment Platform →</a><br><br>
+                        
+                        <strong>Spatiotemporal Modeling:</strong><br>
+                        • Built 3 spatiotemporal forecasting models (EOF-SVD, Bayesian GLLVM-SPDE, spectral clustering), improved predictions 15%<br>
+                        • Coded custom Bayesian C++/TMB likelihood functions for zero-inflated data with spatial correlation on 12K+ observations<br>
+                        • Applied statistical decomposition methods to separate signals from noise in messy, real-world environmental datasets<br>
+                        • Designed validation framework testing model performance across 349 locations using multiple evaluation metrics<br><br>
+                        
+                        <strong>Machine Learning & Data Engineering:</strong><br>
+                        • Developed ML pipelines in Python for clustering, dimensionality reduction, anomaly detection, and forecasting<br>
+                        • Combined data from 3 databases with inconsistent schemas into unified datasets, standardizing 20+ parameters across 16 devices<br>
+                        • Built clustering pipeline (10K samples × 600 features) using DPGMM and HDBSCAN to identify distinct patterns<br>
+                        • Engineered dimensionality reduction pipeline (PCA, UMAP) reducing data 99% while preserving pattern structure<br>
+                        • Implemented distributed and parallelized ML model training across CPU cores for large scientific datasets<br>
+                        • Deployed interactive Streamlit dashboard enabling non-technical stakeholders to explore environmental data and model outputs
+                    </p>
+                </div>
+
+                <div class="resume-item">
+                    <h4>Senior Associate Sales Manager</h4>
+                    <div class="resume-meta">Evolved By Nature | 2020 - 2023 (Promoted 3x from Sales Account Associate)</div>
+                    <p class="card-description">
+                        • Built analytics system tracking user behavior and purchasing data, growing revenue 1,100% ($360K to $4M) in 8 months<br>
+                        • Pitched to C-suite executives at multinational brands, translating technical concepts into business recommendations<br>
+                        • Ran 10+ A/B tests across pricing and user flows, analyzing results to increase conversion 30%<br>
+                        • Created real-time Looker dashboards monitoring 12+ KPIs and alerting teams to anomalies in user behavior or system performance<br>
+                        • Analyzed purchase patterns identifying high-value user segments, leading to 400% increase in subscription adoption<br>
+                        • Built demand forecasting models using time series analysis, reducing out-of-stock time 80% and guiding ad spend allocation<br>
+                        • Optimized $2.4M paid acquisition spend increasing ROI from 0.8 to 1.6 by identifying true user engagement vs. low-quality traffic<br>
+                        • Owned end-to-end e-commerce operations for 14-product portfolio, reporting directly to CEO on analytics, strategy, and growth<br>
+                        • Worked with engineering, marketing, and operations teams using data to guide product and marketing decisions
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Projects Tab -->
+        <div id="projects" class="tab-content">
+            <section class="content-section">
+                <h2 class="section-title">Projects & Code</h2>
+                
+                <div class="card-grid">
+                    <div class="card repo">
+                        <div class="repo-name">marine-heatwave-detection</div>
+                        <div class="repo-description">
+                            ETL pipeline for processing 1B+ NOAA records with automated anomaly detection for marine heatwave patterns. 
+                            Implements statistical quality control, feature extraction, and real-time alerting for extreme temperature events 
+                            in ocean sensor data.
+                        </div>
+                        <div class="repo-stats">
+                            <span class="repo-stat">Python</span>
+                            <span class="repo-stat">Data Engineering</span>
+                            <span class="repo-stat">Anomaly Detection</span>
+                        </div>
+                    </div>
+
+                    <div class="card repo">
+                        <div class="repo-name">spatiotemporal-fisheries-models</div>
+                        <div class="repo-description">
+                            Implementation of three spatiotemporal forecasting approaches: EOF-SVD decomposition, Bayesian GLLVM-SPDE, 
+                            and spectral clustering. Includes custom C++/TMB likelihood functions for zero-inflated spatial data and 
+                            comprehensive validation framework across 349 locations.
+                        </div>
+                        <div class="repo-stats">
+                            <span class="repo-stat">R</span>
+                            <span class="repo-stat">C++/TMB</span>
+                            <span class="repo-stat">Bayesian Statistics</span>
+                        </div>
+                    </div>
+
+                    <div class="card repo">
+                        <div class="repo-name">fisheries-risk-monte-carlo</div>
+                        <div class="repo-description">
+                            Monte Carlo simulation framework for fisheries disaster scenarios. Generates 10K+ scenarios for PML and 
+                            Loss Exceedance Curve calculations, linking catch records, temperature data, and economic impacts for 
+                            insurance risk assessment.
+                        </div>
+                        <div class="repo-stats">
+                            <span class="repo-stat">Python</span>
+                            <span class="repo-stat">R</span>
+                            <span class="repo-stat">Risk Modeling</span>
+                        </div>
+                    </div>
+
+                    <div class="card repo">
+                        <div class="repo-name">Lake Erie Environmental Dashboard</div>
+                        <div class="repo-description">
+                            Interactive Streamlit dashboard for environmental sensor data visualization and exploration. Features time series analysis, 
+                            anomaly detection, and automated QC checks across 16 devices. Combined data from 3 databases with inconsistent schemas, 
+                            standardizing 20+ parameters. Deployed on Streamlit Cloud, processing 700MB+ of data from multiple sources.
+                            <br><br>
+                            <a href="https://lkerie.streamlit.app/" target="_blank" style="color: var(--accent); font-weight: 600;">🔗 View Live Dashboard</a> | 
+                            <a href="https://github.com/Bware583/LakeErie" target="_blank" style="color: var(--accent); font-weight: 600;">💻 GitHub Repo</a>
+                        </div>
+                        <div class="repo-stats">
+                            <span class="repo-stat">Python</span>
+                            <span class="repo-stat">Streamlit</span>
+                            <span class="repo-stat">Data Visualization</span>
+                        </div>
+                    </div>
+
+                    <div class="card repo">
+                        <div class="repo-name">environmental-data-clustering</div>
+                        <div class="repo-description">
+                            ML pipeline for clustering and dimensionality reduction on high-dimensional environmental sensor data. 
+                            Implements DPGMM and HDBSCAN for pattern detection, and PCA/UMAP for 99% data reduction while preserving structure. 
+                            Processes 10K samples × 600 features with parallelized computation, reducing processing time 60%.
+                        </div>
+                        <div class="repo-stats">
+                            <span class="repo-stat">Python</span>
+                            <span class="repo-stat">scikit-learn</span>
+                            <span class="repo-stat">Machine Learning</span>
+                        </div>
+                    </div>
+
+                    <div class="card repo">
+                        <div class="repo-name">ecommerce-analytics-dashboard</div>
+                        <div class="repo-description">
+                            Real-time analytics system tracking user behavior and purchasing patterns. Looker dashboards monitoring 12+ KPIs 
+                            with anomaly alerting. Includes A/B testing framework, demand forecasting models, and customer segmentation analysis. 
+                            Scaled revenue from $360K to $4M.
+                        </div>
+                        <div class="repo-stats">
+                            <span class="repo-stat">SQL</span>
+                            <span class="repo-stat">Looker</span>
+                            <span class="repo-stat">Time Series</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; text-align: center;">
+                    <a href="https://github.com/nikolaimorokhovich" class="contact-link">
+                        View All Projects on GitHub
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Resume Tab -->
+        <div id="resume" class="tab-content">
+            <section class="content-section">
+                <h2 class="section-title">Resume</h2>
+                
+                <div style="margin-bottom: 3rem; text-align: center;">
+                    <a href="Morokhovich_Resume.pdf" class="contact-link" download>
+                        📄 Download Full Resume (PDF)
+                    </a>
+                </div>
+                
+                <div class="resume-section">
+                    <h3>Education</h3>
+                    <div class="resume-item">
+                        <h4>M.S. in Quantitative Ecology and Resource Management</h4>
+                        <div class="resume-meta">University of Washington | 2023 - Present (Expected 2025)</div>
+                        <p class="card-description">
+                            <strong>Focus:</strong> Statistics and Data Science<br>
+                            <strong>Thesis:</strong> Quantifying Uncertainty in Dynamic Systems: Statistical Approaches for Forecasting and Fisheries Risk Assessment<br><br>
+                            <strong>Relevant Coursework:</strong><br>
+                            • Machine Learning for Big Data (Neural networks, distributed computing, large-scale model training, LLMs, gradient descent)<br>
+                            • Data Structures and Algorithms<br>
+                            • Database Systems<br>
+                            • Currently exploring LLM applications/training and modern deep learning frameworks through self-study and online courses
+                        </p>
+                    </div>
+
+                    <div class="resume-item">
+                        <h4>B.A. in Ecology and Evolutionary Biology, Magna Cum Laude</h4>
+                        <div class="resume-meta">Princeton University | 2016 - 2020</div>
+                        <p class="card-description">
+                            • Varsity Men's Soccer Team<br>
+                            • Academic All-Ivy
+                        </p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Technical Skills</h3>
+                    <div class="card">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                            <div>
+                                <h4 style="color: var(--accent); margin-bottom: 1rem;">Programming & Data Engineering</h4>
+                                <p style="line-height: 2;">
+                                    • Python (scikit-learn, PyTorch, pandas)<br>
+                                    • R (tidyverse, Stan, ggplot2)<br>
+                                    • SQL<br>
+                                    • Java, Git, C++/TMB<br>
+                                    • ETL Pipeline Development<br>
+                                    • Database Architecture
+                                </p>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--accent); margin-bottom: 1rem;">Statistical & Analytical</h4>
+                                <p style="line-height: 2;">
+                                    • Machine Learning<br>
+                                    • Statistical Modeling & Inference<br>
+                                    • Time Series Analysis<br>
+                                    • Monte Carlo Simulations<br>
+                                    • Risk Modeling & Simulation<br>
+                                    • Bayesian & Hierarchical Models
+                                </p>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--accent); margin-bottom: 1rem;">Visualization & Communication</h4>
+                                <p style="line-height: 2;">
+                                    • Power BI/Looker/RShiny/Streamlit<br>
+                                    • Data Storytelling<br>
+                                    • Stakeholder Communication<br>
+                                    • Technical Documentation<br>
+                                    • Dashboard Development<br>
+                                    • Cross-Functional Collaboration
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3>Key Competencies</h3>
+                    <div class="card">
+                        <p style="line-height: 2;">
+                            <strong>Machine Learning & AI:</strong> Neural networks, distributed computing, large-scale model training, LLMs, gradient descent, clustering algorithms, dimensionality reduction, anomaly detection<br><br>
+                            <strong>Data Processing:</strong> Raw sensor data processing, quality control, feature extraction, data validation, database integration, schema standardization<br><br>
+                            <strong>Statistical Analysis:</strong> Spatiotemporal modeling, Bayesian inference, hierarchical models, zero-inflated distributions, spatial correlation, time series decomposition<br><br>
+                            <strong>Software Engineering:</strong> Parallel and distributed computing, automated workflows, CI/CD, version control, code optimization, scalable architecture<br><br>
+                            <strong>Business Analytics:</strong> A/B testing, customer segmentation, demand forecasting, conversion optimization, KPI tracking, ROI analysis
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Fun Tab -->
+        <div id="fun" class="tab-content">
+            <section class="content-section">
+                <h2 class="section-title">Fun Projects</h2>
+                
+                <div class="card" style="text-align: center; padding: 3rem;">
+                    <h3 style="font-family: 'Crimson Pro', serif; font-size: 2rem; margin-bottom: 1rem; color: var(--primary);">
+                        🦁 Animal Kingdom Game
+                    </h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-light);">
+                        A fun interactive game I built! Test your knowledge of the animal kingdom and see how well you can identify different species.
+                    </p>
+                    <a href="https://nmorok.github.io/animal_kingdom/" target="_blank" class="contact-link" style="font-size: 1.1rem;">
+                        🎮 Play Animal Kingdom Game
+                    </a>
+                </div>
+
+                <div class="card" style="margin-top: 2rem; padding: 2rem;">
+                    <h4 style="font-family: 'Crimson Pro', serif; font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary);">
+                        More Coming Soon!
+                    </h4>
+                    <p style="color: var(--text-light);">
+                        I enjoy building interactive projects and games in my spare time. Check back for more fun creations!
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Tab -->
+        <div id="contact" class="tab-content">
+            <section class="content-section">
+                <h2 class="section-title">Get In Touch</h2>
+                
+                <div class="card" style="text-align: center; padding: 3rem;">
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                        I'm always interested in hearing about new opportunities, collaborations, 
+                        and research projects. Whether you're looking for a data scientist, want to discuss 
+                        fisheries research, or just want to connect, feel free to reach out!
+                    </p>
+                    
+                    <div class="contact-links">
+                        <a href="/cdn-cgi/l/email-protection#513f3c3e233e3a393e2738323911363c30383d7f323e3c" class="contact-link">
+                            📧 Email
+                        </a>
+                        <a href="https://github.com/nikolaimorokhovich" class="contact-link">
+                            💻 GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/nikolai-cole-morokhovich-793670140/" class="contact-link">
+                            💼 LinkedIn
+                        </a>
+                    </div>
+                    
+                    <p style="font-size: 0.95rem; margin-top: 2rem; color: var(--text-light);">
+                        📍 Based in Seattle, WA<br>
+                        🌍 Available for work in UK with YMS visa (up to 3 years)
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cole Morokhovich. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
